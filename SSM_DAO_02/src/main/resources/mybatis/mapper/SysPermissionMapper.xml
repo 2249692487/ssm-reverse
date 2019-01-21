@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口全路径包名+类名-->
+<mapper namespace="com.test.mapper.SysPermissionMapper">
+    <select id="findAllPermissionList" resultType="com.test.pojo.SysPermission">
+        select * from sys_permission
+    </select>
+    <insert id="addPermission">
+        INSERT INTO sys_permission(id,permissionName,url,pid)
+        VALUES(NULL,#{permissionName},#{url},#{pid})
+    </insert>
+    <!--查询角色携带的权限id集合-->
+    <select id="findPermissionIdList" resultType="Long">
+       select permissionId from sys_role_permission
+        where roleId=#{role_id}
+    </select>
+    <delete id="deleteRoleWithPerimssion">
+        DELETE FROM sys_user_role
+        WHERE roleId=#{role_id}
+    </delete>
+    <insert id="addRoleWithPermission">
+        INSERT INTO sys_role_permission(permissionId,roleId)
+        VALUES(#{permission_id},#{role_id})
+    </insert>
+</mapper>

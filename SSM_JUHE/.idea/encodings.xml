@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../Reverse_Demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SSM_DAO_02" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SSM_POJO_02" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SSM_SERVICE_02" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../SSM_WEB_02" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring_security_01" charset="UTF-8" />
+  </component>
+</project>

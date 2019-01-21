@@ -1,0 +1,8 @@
+com\test\controller\ProductController.class
+com\test\controller\SysLogController.class
+com\test\controller\AccountController.class
+com\test\controller\SysPermissionController.class
+com\test\controller\OrderController.class
+com\test\controller\SysUserController.class
+com\test\aspect\LogAspect.class
+com\test\controller\SysRoleController.class

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口全路径包名+类名-->
+<mapper namespace="com.test.mapper.OrderMapper">
+    <resultMap id="ordersWithProductResultMap" type="com.test.pojo.Orders">
+        <!--1.映射 Orders表的主键-->
+        <id property="id" column="orders_id"/>
+        <!--2.映射 Orders表的普通字段-->
+        <result property="orderNum" column="orderNum"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="peopleCount" column="peopleCount"/>
+        <result property="orderDesc" column="orderDesc"/>
+        <result property="payType" column="payType"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <!--3.映射 orders的对象-->
+        <association property="product" javaType="com.test.pojo.Product" column="product_id">
+            <!--3.1 映射product表的主键-->
+            <id property="id" column="product_id"/>
+            <!--3.2 映射product表普通字段-->
+            <result property="productNum" column="productNum"/>
+            <result property="productName" column="productName"/>
+            <result property="cityName" column="cityName"/>
+            <result property="departureTime" column="departureTime"/>
+            <result property="productPrice" column="productPrice"/>
+            <result property="productDesc" column="productDesc"/>
+            <result property="productStatus" column="productStatus"/>
+        </association>
+    </resultMap>
+   <select id="queryAllOrdersList" resultMap="ordersWithProductResultMap">
+       select o.*, p.*, o.id as orders_id, p.id as product_id from orders o
+        left join product p on o.productId=p.id
+   </select>
+    <!--添加订单-->
+    <insert id="addOrders">
+        insert into orders(id, orderNum, orderTime, peopleCount, orderDesc, payType, orderStatus, productId)
+        values(null, #{orderNum}, #{orderTime}, #{peopleCount}, #{orderDesc}, #{payType}, #{orderStatus}, #{product.id})
+    </insert>
+</mapper>

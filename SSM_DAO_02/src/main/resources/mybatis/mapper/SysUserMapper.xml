@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口全路径包名+类名-->
+<mapper namespace="com.test.mapper.SysUserMapper">
+    <!--查询角色所带的权限-->
+    <select id="findSysUserByUsername" resultMap="userWithRoleAndPermissionResultMap">
+        SELECT p.id AS permission_id,r.id AS role_id, u.id AS user_id, u.*,r.*,p.* FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.userid=u.id
+        LEFT JOIN sys_role r ON ur.roleId=r.id
+        LEFT JOIN sys_role_permission rp ON rp.roleId=r.id
+        LEFT JOIN sys_permission p ON rp.permissionId=p.id
+        where username = #{username}
+    </select>
+    <select id="queryAllSysUserList" resultType="com.test.pojo.SysUser">
+        select * from sys_user
+    </select>
+    <insert id="addUser">
+        INSERT INTO sys_user(id,username,PASSWORD,email,phoneNum,STATUS)
+        VALUES(null,#{username},#{PASSWORD},#{email},#{phoneNum},#{STATUS})
+    </insert>
+    <resultMap id="userWithRoleAndPermissionResultMap" type="com.test.pojo.SysUser" autoMapping="true">
+        <id property="id" column="user_id"/>
+        <collection property="sysRoleList" ofType="com.test.pojo.SysRole" autoMapping="true">
+            <id property="id" column="role_id"/>
+            <collection property="sysPermissionList" ofType="com.test.pojo.SysPermission" autoMapping="true">
+                <id property="id" column="permission_id"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="findUserById" resultMap="userWithRoleAndPermissionResultMap">
+        SELECT p.id AS permission_id,r.id AS role_id, u.id AS user_id, u.*,r.*,p.* FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.userid=u.id
+        LEFT JOIN sys_role r ON ur.roleId=r.id
+        LEFT JOIN sys_role_permission rp ON rp.roleId=r.id
+        LEFT JOIN sys_permission p ON rp.permissionId=p.id
+        WHERE u.id=#{user_id}
+    </select>
+</mapper>

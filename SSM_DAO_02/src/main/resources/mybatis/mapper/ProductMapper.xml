@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口全路径包名+类名-->
+<mapper namespace="com.test.mapper.ProductMapper">
+    <select id="findAllProduct" resultType="com.test.pojo.Product">
+       select * from product
+   </select>
+    <insert id="addProduct">
+       INSERT INTO product
+       (id,productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus)
+       VALUES
+       (NULL,#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})
+    </insert>
+    <!--修改-->
+    <select id="findProductById" resultType="product">
+        select * from product
+        where id = #{id}
+    </select>
+    <!--修改商品信息-->
+    <update id="updateProduct">
+        update product
+        set
+            productNum=#{productNum},
+            productName=#{productName},
+            cityName=#{cityName},
+            departureTime=#{departureTime},
+            productPrice=#{productPrice},
+            productDesc=#{productDesc},
+            productStatus=#{productStatus}
+        where id=#{id}
+    </update>
+    <!--查询分页显示数据-->
+    <select id="queryPageData" resultType="Product">
+    select * from product
+    limit #{start}, #{numPerPage}
+</select>
+
+    <!--查询总记录数-->
+    <select id="queryTotalCount" resultType="long">
+    select count(*) from product;
+    </select>
+    <delete id="deleteProduct">
+        delete from product
+        <if test="idList!=null and idList.size()>0">
+            <foreach collection="idList" item="id" separator="," open="where id in (" close=")">
+                #{id}
+            </foreach>
+        </if>
+    </delete>
+</mapper>

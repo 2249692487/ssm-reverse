@@ -1,0 +1,14 @@
+com\test\service\SysRoleService.class
+com\test\service\ProductService.class
+com\test\service\SysLogService.class
+com\test\service\SysPermissionService.class
+com\test\service\AccountService.class
+com\test\service\impl\SysRoleServiceImpl.class
+com\test\service\impl\SysPermissionServiceImpl.class
+com\test\service\impl\OrdersServiceImpl.class
+com\test\service\impl\AccountServiceImpl.class
+com\test\service\UserService.class
+com\test\service\impl\UserServiceImpl.class
+com\test\service\OrdersService.class
+com\test\service\impl\SysLogServiceImpl.class
+com\test\service\impl\ProductServiceImpl.class

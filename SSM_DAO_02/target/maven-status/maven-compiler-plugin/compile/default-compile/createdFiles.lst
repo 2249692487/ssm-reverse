@@ -1,0 +1,7 @@
+com\test\mapper\ProductMapper.class
+com\test\mapper\SysRoleMapper.class
+com\test\mapper\AccountMapper.class
+com\test\mapper\SysUserMapper.class
+com\test\mapper\SysPermissionMapper.class
+com\test\mapper\OrderMapper.class
+com\test\mapper\SysLogMapper.class
